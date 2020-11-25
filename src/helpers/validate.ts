@@ -4,6 +4,9 @@ const validateCornerPosition = (data: string) => {
   if (data.length > 2) {
     alert(`Error: ${data.length} inputs provided for corner, only 2 required`);
   }
+  if (data.length < 2) {
+    alert(`Error: ${data.length} inputs provided for corner,2 required`);
+  }
   //check if not number
   for (let i = 0; i < data.length; i++) {
     let char = data[i];
