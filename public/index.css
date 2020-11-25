@@ -1,0 +1,34 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+h1 {
+  margin: 20px;
+}
+#directions {
+  width: 200px;
+  height: 300px;
+}
+
+.mars-bot {
+  display: flex;
+}
+
+.input {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.output {
+  width: 50vw;
+  background: red;
+}
+button {
+  display: block;
+  width: 203px;
+  height: 40px;
+}
+button:hover {
+  cursor: pointer;
+}
