@@ -20,8 +20,10 @@ const start = (data: string[]) => {
   const x = Number(cornerCoords[0]);
   const y = Number(cornerCoords[1]);
 
-  let grid = new Grid(x, y);
+  let grid = Grid(x, y);
   let rovers: Rover[] = [];
+
+  grid.printGrid();
 
   for (let i = 1; i < data.length; i += 2) {
     const roverPosition = data[i];

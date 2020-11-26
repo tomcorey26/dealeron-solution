@@ -1,15 +1,17 @@
 import { createMarsGrid } from './helpers/createMarsGrid';
+import { Rover } from './types/Rover';
 
-export class Grid {
-  grid: number[][];
+export const Grid = (x: number, y: number) => {
+  const grid: (Rover | null)[][] = createMarsGrid(x, y);
 
-  constructor(x: number, y: number) {
-    this.grid = createMarsGrid(x, y);
-  }
-
-  printGrid() {
-    this.grid.forEach((row) => {
+  const printGrid = () => {
+    grid.forEach((row) => {
       console.log(row);
     });
-  }
-}
+  };
+
+  return {
+    grid,
+    printGrid,
+  };
+};
