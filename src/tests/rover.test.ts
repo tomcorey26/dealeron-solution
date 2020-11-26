@@ -2,17 +2,25 @@ import { Grid } from '../Grid';
 import { createRovers } from '../helpers/createRovers';
 import { MarsRover } from '../Rover';
 
-test('Expect 1 2 N LMLMLMLMM to result in rover position 1 3 N', async () => {
+test('Expect test input to be expected output', async () => {
   let { exploreGrid } = new Grid(5, 5);
   const rovers: MarsRover[] = createRovers([
     ['foo'],
     ['1', '2', 'N'],
     ['LMLMLMLMM'],
+    ['3', '3', 'E'],
+    ['MMRMMRMRRM'],
   ]);
-  const rover = rovers[0];
-  await exploreGrid(rover, true);
+  const rover1 = rovers[0];
+  await exploreGrid(rover1, true);
 
-  expect(rover.x).toBe(1);
-  expect(rover.y).toBe(3);
-  expect(rover.dir).toBe('N');
+  expect(rover1.x).toBe(1);
+  expect(rover1.y).toBe(3);
+  expect(rover1.dir).toBe('N');
+
+  const rover2 = rovers[1];
+  await exploreGrid(rover2, true);
+  expect(rover2.x).toBe(5);
+  expect(rover2.y).toBe(1);
+  expect(rover2.dir).toBe('E');
 });
