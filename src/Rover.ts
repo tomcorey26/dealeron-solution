@@ -52,19 +52,19 @@ export class MarsRover {
     }
   }
 
-  moveRover() {
+  moveRover(length: number, width: number) {
     switch (this.dir) {
       case 'E':
-        this.x += 1;
+        if (this.x !== width) this.x += 1;
         break;
       case 'N':
-        this.y += 1;
+        if (this.y !== length) this.y += 1;
         break;
       case 'S':
-        this.y -= 1;
+        if (this.y !== 0) this.y -= 1;
         break;
       case 'W':
-        this.x -= 1;
+        if (this.x !== 0) this.x -= 1;
     }
   }
 }

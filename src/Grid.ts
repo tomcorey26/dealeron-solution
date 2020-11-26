@@ -1,6 +1,5 @@
 import { createMarsGrid } from './helpers/createMarsGrid';
 import { MarsRover } from './Rover';
-import { Instruction } from './types/Instruction';
 import { MarsGrid } from './types/MarsGrid';
 import { UI } from './UI';
 
@@ -40,7 +39,7 @@ export class Grid {
       if (instruction === 'L' || instruction === 'R') {
         rover.changeDirection(instruction);
       } else {
-        rover.moveRover();
+        rover.moveRover(this.l, this.w);
       }
       await this.renderRoverOnGrid(rover);
     }
