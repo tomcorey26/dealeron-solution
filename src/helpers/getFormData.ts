@@ -16,15 +16,21 @@ export const getFormData = (form: HTMLFormElement) => {
   }
 
   let allArgs: string[][] = [];
-  lines.forEach((line: string, idx: number) => {
+  console.log(lines[0]);
+  const gridDimensions = {
+    w: Number(lines[0].split(' ')[0]),
+    l: Number(lines[0].split(' ')[1]),
+  };
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
     const args = line.split(' ');
 
-    const isValid = validate(args, idx);
+    const isValid = validate(args, i, gridDimensions);
     if (!isValid) {
       return null;
     }
     allArgs.push(args);
-  });
+  }
 
   return allArgs;
 };

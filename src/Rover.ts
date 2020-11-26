@@ -55,10 +55,10 @@ export class MarsRover {
   moveRover(length: number, width: number) {
     switch (this.dir) {
       case 'E':
-        if (this.x !== width) this.x += 1;
+        if (this.x !== length) this.x += 1;
         break;
       case 'N':
-        if (this.y !== length) this.y += 1;
+        if (this.y !== width) this.y += 1;
         break;
       case 'S':
         if (this.y !== 0) this.y -= 1;
