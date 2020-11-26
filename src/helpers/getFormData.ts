@@ -16,7 +16,6 @@ export const getFormData = (form: HTMLFormElement) => {
   }
 
   let allArgs: string[][] = [];
-  console.log(lines[0]);
   const gridDimensions = {
     w: Number(lines[0].split(' ')[0]),
     l: Number(lines[0].split(' ')[1]),

@@ -32,8 +32,10 @@ export class Grid {
     UI.renderGrid(this.grid);
   };
 
-  exploreGrid = async (rover: MarsRover) => {
-    await this.renderRoverOnGrid(rover);
+  exploreGrid = async (rover: MarsRover, test?: boolean) => {
+    if (!test) {
+      await this.renderRoverOnGrid(rover);
+    }
     for (let i = 0; i < rover.instructions.length; i++) {
       const instruction = rover.instructions[i];
       if (instruction === 'L' || instruction === 'R') {
@@ -41,7 +43,9 @@ export class Grid {
       } else {
         rover.moveRover(this.l, this.w);
       }
-      await this.renderRoverOnGrid(rover);
+      if (!test) {
+        await this.renderRoverOnGrid(rover);
+      }
     }
   };
 }
