@@ -15,16 +15,16 @@ export const getFormData = (form: HTMLFormElement) => {
     return null;
   }
 
-  let lineArr: string[] = [];
+  let allArgs: string[][] = [];
   lines.forEach((line: string, idx: number) => {
-    const str = line.split(' ').join('');
+    const args = line.split(' ');
 
-    const isValid = validate(str, idx);
+    const isValid = validate(args, idx);
     if (!isValid) {
       return null;
     }
-    lineArr.push(str);
+    allArgs.push(args);
   });
 
-  return lineArr;
+  return allArgs;
 };

@@ -1,44 +1,33 @@
-import { Grid } from './grid';
+import { Grid } from './Grid';
 import { getFormData } from './helpers/getFormData';
-import { Directions } from './types/Directions';
-import { Rover } from './types/Rover';
+import { UI } from './UI';
+import { createRovers } from './helpers/createRovers';
+import { MarsRover } from './Rover';
 
 const form = document.querySelector('form') as HTMLFormElement;
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const data: string[] | null = getFormData(form);
-
+  const data: string[][] | null = getFormData(form);
   if (data) {
     start(data);
   }
-  console.log(data);
 });
 
-const start = (data: string[]) => {
+const start = (data: string[][]) => {
+  console.log('the data', data);
   const cornerCoords = data[0];
   const x = Number(cornerCoords[0]);
   const y = Number(cornerCoords[1]);
 
-  let grid = Grid(x, y);
-  let rovers: Rover[] = [];
+  let { grid, exploreGrid } = new Grid(x, y);
+  UI.renderGrid(grid);
 
-  grid.printGrid();
+  console.log('grid', grid);
+  const rovers: MarsRover[] = createRovers(data);
+  console.log('the rovers', rovers);
 
-  for (let i = 1; i < data.length; i += 2) {
-    const roverPosition = data[i];
-    const x = Number(roverPosition[0]);
-    const y = Number(roverPosition[1]);
-    const direction = roverPosition[2] as Directions;
-    const instructions = data[i + 1];
+  exploreGrid(rovers[0]);
 
-    rovers.push({
-      startPosition: { x, y },
-      instructions,
-      dir: direction,
-      x,
-      y,
-    });
-  }
-  console.log(rovers);
+  // console.log('rovers', rovers);
 };

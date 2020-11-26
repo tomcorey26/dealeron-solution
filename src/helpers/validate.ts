@@ -1,11 +1,15 @@
 import { directions, roverMoves } from './constants';
 
-const validateCornerPosition = (data: string) => {
+const validateCornerPosition = (data: string[]) => {
   if (data.length > 2) {
-    alert(`Error: ${data.length} inputs provided for corner, only 2 required`);
+    alert(
+      `Error: ${data.length} inputs provided for corner, only 2 required (check for extra spaces)`
+    );
   }
   if (data.length < 2) {
-    alert(`Error: ${data.length} inputs provided for corner,2 required`);
+    alert(
+      `Error: ${data.length} inputs provided for corner,2 required (check for extra spaces)`
+    );
   }
   //check if not number
   for (let i = 0; i < data.length; i++) {
@@ -20,7 +24,7 @@ const validateCornerPosition = (data: string) => {
   return true;
 };
 
-const validateRoverPostition = (data: string) => {
+const validateRoverPostition = (data: string[]) => {
   if (data.length > 3) {
     alert(
       `Error: ${data.length} inputs provided for rover position, only 3 required`
@@ -33,7 +37,7 @@ const validateRoverPostition = (data: string) => {
 
   if (isNaN(x as any) || isNaN(y as any)) {
     alert(
-      `Incorrect rover position input (${x},${y}), please pass numbers only`
+      `Incorrect rover position input (${x},${y}), please pass numbers only (check for extra spaces)`
     );
     return false;
   }
@@ -46,10 +50,11 @@ const validateRoverPostition = (data: string) => {
   return true;
 };
 
-const validateRoverMovement = (data: string) => {
+const validateRoverMovement = (data: string[]) => {
   // check if M L R
-  for (let i = 0; i < data.length; i++) {
-    let char = data[i];
+  let str = data[0];
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
     if (!(char in roverMoves)) {
       alert(
         `Incorrect corner rover movement input ${char}, please pass MRL only`
@@ -60,7 +65,7 @@ const validateRoverMovement = (data: string) => {
   return true;
 };
 
-export const validate = (data: string, lineNumber: number) => {
+export const validate = (data: string[], lineNumber: number) => {
   const isCornerPosition = lineNumber === 0;
   const isRoverPosition = lineNumber % 2 !== 0 && lineNumber !== 0;
 
@@ -72,6 +77,5 @@ export const validate = (data: string, lineNumber: number) => {
   } else {
     isValid = validateRoverMovement(data);
   }
-
   return isValid;
 };
