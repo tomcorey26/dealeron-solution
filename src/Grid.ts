@@ -6,9 +6,13 @@ import { UI } from './UI';
 
 export class Grid {
   grid: MarsGrid;
+  l: number;
+  w: number;
 
   constructor(x: number, y: number) {
     this.grid = createMarsGrid(x, y);
+    this.l = x;
+    this.w = y;
   }
 
   printGrid = () => {
@@ -17,19 +21,22 @@ export class Grid {
     });
   };
 
-  async renderRoverOnGrid(rover: MarsRover) {
-    await new Promise((resolve) => setTimeout(resolve, 500));
+  resetGrid = () => {
+    this.grid = createMarsGrid(this.l, this.w);
+  };
+
+  renderRoverOnGrid = async (rover: MarsRover) => {
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    this.resetGrid();
     const flip = this.grid.length - 1;
     this.grid[flip - rover.y][rover.x] = rover;
     UI.renderGrid(this.grid);
-  }
+  };
 
   exploreGrid = async (rover: MarsRover) => {
-    console.log(rover);
     await this.renderRoverOnGrid(rover);
     for (let i = 0; i < rover.instructions.length; i++) {
       const instruction = rover.instructions[i];
-      console.log('hi');
       if (instruction === 'L' || instruction === 'R') {
         rover.changeDirection(instruction);
       } else {

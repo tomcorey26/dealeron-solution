@@ -58,3 +58,15 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+#rover-output {
+  margin-top: 8px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.rover-position {
+  font-size: 40px;
+}

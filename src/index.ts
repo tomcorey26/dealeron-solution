@@ -14,8 +14,8 @@ form.addEventListener('submit', (e) => {
   }
 });
 
-const start = (data: string[][]) => {
-  console.log('the data', data);
+const start = async (data: string[][]) => {
+  UI.clearRoverResults();
   const cornerCoords = data[0];
   const x = Number(cornerCoords[0]);
   const y = Number(cornerCoords[1]);
@@ -23,11 +23,10 @@ const start = (data: string[][]) => {
   let { grid, exploreGrid } = new Grid(x, y);
   UI.renderGrid(grid);
 
-  console.log('grid', grid);
   const rovers: MarsRover[] = createRovers(data);
-  console.log('the rovers', rovers);
 
-  exploreGrid(rovers[0]);
-
-  // console.log('rovers', rovers);
+  for (let i = 0; i < rovers.length; i++) {
+    await exploreGrid(rovers[i]);
+    UI.renderRoverResult(rovers[i]);
+  }
 };

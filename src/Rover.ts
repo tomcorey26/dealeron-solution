@@ -21,7 +21,6 @@ export class MarsRover {
   }
 
   changeDirection(direction: 'L' | 'R') {
-    console.log(this);
     if (direction === 'L') {
       switch (this.dir) {
         case 'E':
@@ -53,5 +52,19 @@ export class MarsRover {
     }
   }
 
-  moveRover() {}
+  moveRover() {
+    switch (this.dir) {
+      case 'E':
+        this.x += 1;
+        break;
+      case 'N':
+        this.y += 1;
+        break;
+      case 'S':
+        this.y -= 1;
+        break;
+      case 'W':
+        this.x -= 1;
+    }
+  }
 }
