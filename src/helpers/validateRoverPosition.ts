@@ -27,7 +27,6 @@ export const validateRoverPostition = (
   }
 
   if (Number(x) > gridDimensions.w || Number(y) > gridDimensions.l) {
-    console.log(gridDimensions);
     alert(`Rover coordinates out of bounds`);
     return false;
   }

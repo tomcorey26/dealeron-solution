@@ -9,11 +9,8 @@ test('Expect 1 2 N LMLMLMLMM to result in rover position 1 3 N', async () => {
     ['1', '2', 'N'],
     ['LMLMLMLMM'],
   ]);
-  console.log(rovers);
   const rover = rovers[0];
-  console.log('before', rover);
   await exploreGrid(rover, true);
-  console.log('after', rover);
 
   expect(rover.x).toBe(1);
   expect(rover.y).toBe(3);
