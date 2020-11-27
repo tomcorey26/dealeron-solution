@@ -12,7 +12,7 @@ npm run dev
 
 # Run tests
 ```bash
-npm run tests
+npm run test
 ```
 # Description
 
